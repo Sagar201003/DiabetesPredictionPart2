@@ -1,0 +1,67 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Diabetes prediction using Machine Learning</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-[url('{% static 'img/diabetesnewphoto.jpg' %}')] bg-cover flex flex-col items-center p-40">
+    <div class="flex flex-col items-center">
+      <h1 class="text-[black] text-6xl tracking-widest">
+        Diabetes Predictor
+      </h1>
+      <h2 class="text-[#36454F] text-3xl mt-2">
+        made using <span class="text-4xl">Machine Learning</span>
+      </h2>
+    </div>
+    <div class="items-center flex flex-col my-[10vw]" id="checkStatus">
+      <p class="text-[black] text-2xl">Check your status</p>
+      <button
+        class="bg-[#FAE4B5] text-black py-2 px-8 text-xl rounded font-bold flex justify-center items-center mt-2" onclick="tryIt()"
+      >
+        Try it
+    </div>
+    <!-- Form for taking the data to test  -->
+    <div class="mt-10 hidden" id="form">
+      <form action="/predict" class="bg-[#D9D9D9] grid rounded w-[25vw] p-5" method="post">
+        {% csrf_token %}
+        <p id="message" style="color: red;"><b>If you don't know the value then put 0</b></p>
+        <label for="gender"> gender </label>
+        <div class="input-field">
+          <input type="radio" name="gender" id="gender" class="scale-125" value="0"> Male</input>
+          <input type="radio" name="gender" id="gender" class="scale-125" value="1"> Female</input>
+        </div>
+        <label for="for"> age </label>
+        <input type="text" class="input_field" name="age"/>
+        <label for="for"> hypertension </label>
+        <input type="text" class="input_field" name="hypertension">
+        <label for="for"> heart_disease </label>
+        <input type="text" class="input_field" name="heart_disease">
+        <label for="for"> smoking_history </label>
+        <input type="text" class="input_field" name="smoking_history">
+        <label for="for"> Height </label>
+        <input type="text" class="input_field" name="height">
+        <label for="for"> Weight </label>
+        <input type="text" class="input_field"  name="weight">
+        <label for="for"> HbA1c_level </label>
+        <input type="text" class="input_field" name="HbA1c_level">
+        <label for="for"> blood_glucose_level </label>
+        <input type="text" class="input_field" name="blood_glucose_level">
+        <button type="submit" id="submit" class="bg-[#FAE4B5] text-black py-2 px-8 text-xl rounded font-bold flex justify-center items-center mt-2 border-[1px] border-black">Submit</button>
+      </form>
+    </div>
+
+    <script>
+      const checkStatus = document.querySelector("#checkStatus");
+
+function tryIt(){
+    checkStatus.style.display="none";
+    document.querySelector("#form").style.display="block"
+}
+
+    </script>
+  </body>
+</html>
