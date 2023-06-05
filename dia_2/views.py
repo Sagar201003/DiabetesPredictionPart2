@@ -73,6 +73,7 @@ def get_user_input(request):
     tuned_model.fit(x_train,y_train)
 
     tuned_model.score(x_test,y_test)
+    print(tuned_model.score(x_test,y_test))
 # Define a function to take user input
 
     if request.method == "POST":
@@ -80,7 +81,7 @@ def get_user_input(request):
         age = float(request.POST.get('age', 0))
         hypertension = float(request.POST.get('hypertension', 0))
         heart_disease = float(request.POST.get('heart_disease', 0))
-        smoking_history = request.POST.get('smoking_history')
+        smoking_history = float(request.POST.get('smoking_history',0))
         height = float(request.POST.get('height', 0))
         weight = float(request.POST.get('weight', 0))
         HbA1c_level = float(request.POST.get('HbA1c_level', 0))
